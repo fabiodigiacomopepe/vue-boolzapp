@@ -213,13 +213,17 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 0 0 20px;
     color: #6b7275;
+}
+
+.fa-microphone {
+    padding: 20px;
 }
 
 .input_messaggio input {
      width: 100%;
-     margin: 0 20px;
+     margin: 0 0 0 20px;
      height: 70%;
      padding: 0 10px;
      border-radius: 10px;

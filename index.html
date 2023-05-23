@@ -75,8 +75,8 @@
 
                     <div class="input_messaggio">
                         <i class="fa-regular fa-face-smile"></i>
-                        <input type="text" placeholder="Scrivi un messaggio">
-                        <i class="fa-solid fa-microphone"></i>
+                        <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="inviaMessaggio(itemAttivo)">
+                        <i @click.stop="inviaMessaggio(itemAttivo)" class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
 
@@ -84,6 +84,7 @@
         </div>
 
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 
     </body>

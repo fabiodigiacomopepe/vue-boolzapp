@@ -20,11 +20,13 @@ Milestone 5 - opzionale
 */
 
 const {createApp} = Vue;
+const {DateTime} = luxon;
 
 createApp ({
     data() {
         return {
             itemAttivo: 0,
+            newMessage: '',
             contacts: [
                 {
                     name: 'Michele',
@@ -188,13 +190,27 @@ createApp ({
                     ],
                 }
             ]
-            
         }
     },
     methods: {
         settoItemAttivo(indice) {
             this.itemAttivo = indice;
-            console.log(this.itemAttivo);
+        },
+        inviaMessaggio(utente) {
+            this.contacts[utente].messages.push({
+                date: "",
+                message: this.newMessage,
+                status: 'sent'
+            });
+            this.newMessage= "";
+            setTimeout(this.risposta, 1000);
+        },
+        risposta(){
+            this.contacts[this.itemAttivo].messages.push({
+                date: "",
+                message: "ok",
+                status: 'received'
+            });
         }
     }
 }).mount("#container_generale")
