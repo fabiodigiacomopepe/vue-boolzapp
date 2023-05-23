@@ -159,12 +159,12 @@ li {
     margin-left: 10px;
 }
 
-.hidden {
-    display: none;
+#show {
+    display: flex;
 }
 
-.show {
-    display: block;
+#hidden {
+    display: none;
 }
 
 .icone-right_side {
@@ -181,9 +181,6 @@ li {
     background-size: contain;
     overflow: auto;
     padding: 15px 60px 0;
-   /*  display: flex;
-    justify-content: center;
-    flex-direction: column; */
 }
 
 .messaggi {

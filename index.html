@@ -68,10 +68,8 @@
                     </div>
 
                     <div class="area_conversazione">
-                        <div class="messaggi">
-                            <div class="messaggi_io">Hai portato a spasso il cane?</div>
-                            <div class="messaggi_io">Ricordati di stendere i panni</div>
-                            <div class="messaggi_utente">Tutto fatto!</div>
+                        <div v-for="(utente, idx0) in contacts" class="messaggi" :id="(itemAttivo === idx0) ? 'show' : 'hidden'">
+                            <div v-for="(dati_messaggio, idx1) in contacts[idx0].messages" :class="(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente'">{{dati_messaggio.message}}</div>
                         </div>
                     </div>
 
