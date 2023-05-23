@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="css/style.css">
+        <title>Boolzapp</title>
+    </head>
+
+    <body>
+        
+        <div id="container_generale">
+            <div class="container_schermata-interattiva">
+                <div class="left_side">
+                    <div class="info_mioprofilo">
+                        <div class="nome_icon">
+                            <img class="profile_icon" src="img/avatar_1.png" alt="Fabio">
+                            <h5>Fabio</h5>
+                        </div>
+                        <div class="options">
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                    <div class="notifiche">
+                        <i class="fa-solid fa-bell-slash"></i>
+                        <div>
+                            <div class="notifiche_alert"> Ricevi notifiche di nuovi messaggi</div>
+                            <div class="notifiche_on">Attiva notifiche desktop</div>
+                        </div>
+                    </div>
+                    <div class="cerca">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Cerca o inizia una nuova chat">
+                    </div>
+                    <div class="lista_utenti">
+                        <ul>
+                            <li v-for="(utente, idx) in contacts">
+                                <img class="profile_icon" :src="utente.avatar" :alt="utente.name">
+                                <h5>{{utente.name}}</h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="right_side">
+                    <div class="info_utente"></div>
+                    <div class="area_conversazione"></div>
+                    <div class="input_messaggio"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+
+    </body>
+</html>
