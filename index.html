@@ -16,6 +16,7 @@
         
         <div id="container_generale">
             <div class="container_schermata-interattiva">
+
                 <div class="left_side">
                     <div class="info_mioprofilo">
                         <div class="nome_icon">
@@ -28,6 +29,7 @@
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </div>
+
                     <div class="notifiche">
                         <i class="fa-solid fa-bell-slash"></i>
                         <div>
@@ -35,13 +37,15 @@
                             <div class="notifiche_on">Attiva notifiche desktop</div>
                         </div>
                     </div>
+
                     <div class="cerca">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i id="lente" class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
+
                     <div class="lista_utenti">
                         <ul>
-                            <li v-for="(utente, idx) in contacts">
+                            <li v-for="(utente, idx) in contacts" @click="settoItemAttivo(idx)">
                                 <img class="profile_icon" :src="utente.avatar" :alt="utente.name">
                                 <h5>{{utente.name}}</h5>
                             </li>
@@ -49,11 +53,35 @@
                     </div>
                 </div>
                 
+
                 <div class="right_side">
-                    <div class="info_utente"></div>
-                    <div class="area_conversazione"></div>
-                    <div class="input_messaggio"></div>
+                    <div class="container_info">
+                        <div class="info_utente">
+                            <img class="profile_icon_utente" :src="contacts[itemAttivo].avatar" alt="contacts[itemAttivo].name">
+                            <h5>{{contacts[itemAttivo].name}}</h5>
+                        </div>
+                        <div class="icone-right_side">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-paperclip"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+
+                    <div class="area_conversazione">
+                        <div class="messaggi">
+                            <div class="messaggi_io">Hai portato a spasso il cane?</div>
+                            <div class="messaggi_io">Ricordati di stendere i panni</div>
+                            <div class="messaggi_utente">Tutto fatto!</div>
+                        </div>
+                    </div>
+
+                    <div class="input_messaggio">
+                        <i class="fa-regular fa-face-smile"></i>
+                        <input type="text" placeholder="Scrivi un messaggio">
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
                 </div>
+
             </div>
         </div>
 

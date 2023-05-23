@@ -96,7 +96,7 @@ body {
     align-items: center;
 }
 
-.fa-solid.fa-magnifying-glass {
+#lente {
     background-color: white;
     font-size: 12px;
     color: #adacac;
@@ -128,16 +128,50 @@ li {
     align-items: center;
     gap: 10px;
     padding: 10px 15px;
+    cursor: pointer;
+}
+
+.container_info {
+    width: 100%;
+    background-color: #eaeaea;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .profile_icon {
     max-width: 15%;
+
 }
 
 .info_utente {
     width: 100%;
-    height: 60px;
-    background-color: #eaeaea;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile_icon_utente {
+    max-width: 8%;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.icone-right_side {
+    color: #adacac;
+    display: flex;
+    gap: 15px;
+    padding-right: 20px;
 }
 
 .area_conversazione {
@@ -146,10 +180,51 @@ li {
     background-image: url("../img/sfondo_chat.png");
     background-size: contain;
     overflow: auto;
+    padding: 15px 60px 0;
+   /*  display: flex;
+    justify-content: center;
+    flex-direction: column; */
+}
+
+.messaggi {
+    display: flex;
+    flex-direction: column;
+}
+
+.messaggi_io,
+.messaggi_utente {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 50%;
+    margin-bottom: 10px;
+}
+
+.messaggi_io {
+    background-color: #d5f9ba;
+    align-self: flex-end;
+}
+
+.messaggi_utente {
+    background-color: white;
+    align-self: flex-start;
 }
 
 .input_messaggio {
     width: 100%;
     height: 50px;
     background-color: #f3eeea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: #6b7275;
+}
+
+.input_messaggio input {
+     width: 100%;
+     margin: 0 20px;
+     height: 70%;
+     padding: 0 10px;
+     border-radius: 10px;
+     border: none;
 }

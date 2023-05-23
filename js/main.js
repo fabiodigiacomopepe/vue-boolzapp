@@ -24,6 +24,7 @@ const {createApp} = Vue;
 createApp ({
     data() {
         return {
+            itemAttivo: 0,
             contacts: [
                 {
                     name: 'Michele',
@@ -188,6 +189,12 @@ createApp ({
                 }
             ]
             
+        }
+    },
+    methods: {
+        settoItemAttivo(indice) {
+            this.itemAttivo = indice;
+            console.log(this.itemAttivo);
         }
     }
 }).mount("#container_generale")
