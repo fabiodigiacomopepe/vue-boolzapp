@@ -20,8 +20,8 @@
                 <div class="left_side">
                     <div class="info_mioprofilo">
                         <div class="nome_icon">
-                            <img class="profile_icon" src="img/avatar_1.png" alt="Fabio">
-                            <h5>Fabio</h5>
+                            <img class="profile_icon" src="img/avatar_3.png" alt="Fabio">
+                            <h5>Sofia</h5>
                         </div>
                         <div class="options">
                             <i class="fa-solid fa-circle-notch"></i>
@@ -39,13 +39,13 @@
                     </div>
 
                     <div class="cerca">
-                        <i id="lente" class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Cerca o inizia una nuova chat">
+                        <i @click.stop="cercaUtente" id="lente" class="fa-solid fa-magnifying-glass"></i>
+                        <input @keyup.enter="cercaUtente" v-model="cercaUtenteInput" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
 
                     <div class="lista_utenti">
                         <ul>
-                            <li v-for="(utente, idx) in contacts" @click="settoItemAttivo(idx)">
+                            <li v-for="(utente, idx) in contacts" @click="settoItemAttivo(idx)" :class="[(itemAttivo == idx) ? 'activeLiUser' : 'otherLiUser', (utente.visible) ? 'show' : 'hidden']">
                                 <img class="profile_icon" :src="utente.avatar" :alt="utente.name">
                                 <h5>{{utente.name}}</h5>
                             </li>

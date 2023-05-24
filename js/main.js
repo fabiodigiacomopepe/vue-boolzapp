@@ -27,10 +27,11 @@ createApp ({
         return {
             itemAttivo: 0,
             newMessage: '',
+            cercaUtenteInput: "",
             contacts: [
                 {
                     name: 'Michele',
-                    avatar: 'img/avatar_4.png',
+                    avatar: 'img/avatar_1.png',
                     visible: true,
                     messages: [
                         {
@@ -51,8 +52,8 @@ createApp ({
                     ],
                 },
                 {
-                    name: 'Luca',
-                    avatar: 'img/avatar_1.png',
+                    name: 'Fabio',
+                    avatar: 'img/avatar_2.png',
                     visible: true,
                     messages: [
                         {
@@ -74,7 +75,7 @@ createApp ({
                 },
                 {
                     name: 'Samuele',
-                    avatar: 'img/avatar_2.png',
+                    avatar: 'img/avatar_4.png',
                     visible: true,
                     messages: [
                         {
@@ -95,8 +96,8 @@ createApp ({
                     ],
                 },
                 {
-                    name: 'Alessandro',
-                    avatar: 'img/avatar_4.png',
+                    name: 'Alessandro B.',
+                    avatar: 'img/avatar_1.png',
                     visible: true,
                     messages: [
                         {
@@ -112,8 +113,8 @@ createApp ({
                     ],
                 },
                 {
-                    name: 'Carola',
-                    avatar: 'img/avatar_5.png',
+                    name: 'Alessandro L.',
+                    avatar: 'img/avatar_4.png',
                     visible: true,
                     messages: [
                         {
@@ -130,7 +131,7 @@ createApp ({
                 },
                 {
                     name: 'Claudia',
-                    avatar: 'img/avatar_3.png',
+                    avatar: 'img/avatar_5.png',
                     visible: true,
                     messages: [
                         {
@@ -152,7 +153,7 @@ createApp ({
                 },
                 {
                     name: 'Federico',
-                    avatar: 'img/avatar_1.png',
+                    avatar: 'img/avatar_2.png',
                     visible: true,
                     messages: [
                         {
@@ -169,7 +170,7 @@ createApp ({
                 },
                 {
                     name: 'Davide',
-                    avatar: 'img/avatar_2.png',
+                    avatar: 'img/avatar_1.png',
                     visible: true,
                     messages: [
                         {
@@ -210,6 +211,16 @@ createApp ({
                 date: "",
                 message: "ok",
                 status: 'received'
+            });
+        },
+        cercaUtente(){
+            this.contacts.forEach(el => {
+                if (el.name.toUpperCase().includes(this.cercaUtenteInput.toUpperCase())) {
+                    el.visible = true;
+                }
+                else {
+                    el.visible = false;
+                }
             });
         }
     }

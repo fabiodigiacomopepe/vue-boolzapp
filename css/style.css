@@ -131,6 +131,14 @@ li {
     cursor: pointer;
 }
 
+li.otherLiUser:hover {
+    background-color: #f6f7f7;
+}
+
+li.activeLiUser {
+    background-color: #dcdcdc;
+}
+
 .container_info {
     width: 100%;
     background-color: #eaeaea;
@@ -159,11 +167,11 @@ li {
     margin-left: 10px;
 }
 
-#show {
+.show {
     display: flex;
 }
 
-#hidden {
+.hidden {
     display: none;
 }
 
