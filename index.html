@@ -78,9 +78,17 @@
                     </div>
 
                     <!-- Sezione messaggi conversazione -->
-                    <div class="area_conversazione">
+                    <div class="area_conversazione" @click.stop="nascondiMenuTendina">
                         <div class="messaggi">
-                            <div v-for="dati_messaggio in contacts[itemAttivo].messages" :class="(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente'">{{dati_messaggio.message}}</div>
+                            <div @click.stop="mostraMenuTendina(idx2)" v-for="(dati_messaggio, idx2) in contacts[itemAttivo].messages" :class="(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente'">
+                                {{dati_messaggio.message}}
+                                <div class="menuTendina" :class="mostra === idx2 ? 'show_block' : ''">
+                                    <ul>
+                                        <li>Message info</li>
+                                        <li @click.stop="eliminaMessaggio(contacts[itemAttivo].messages, idx2)">Delete Message</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

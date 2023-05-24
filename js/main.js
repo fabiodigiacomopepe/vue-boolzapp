@@ -28,6 +28,7 @@ createApp ({
             itemAttivo: 0,              // Utente interlocutore attivo = 0 (default)
             newMessage: '',             // Nuovo messaggio = stringa vuota (default)
             cercaUtenteInput: "",       // Input in cerca utente = stringa vuota (default)
+            mostra: "",              // Setto mostra su false (default)
             contacts: [
                 {
                     name: 'Michele',
@@ -223,6 +224,18 @@ createApp ({
                     el.visible = false;                         // Setto visibilità = FALSE
                 }
             });
+        },
+        mostraMenuTendina(indice){
+            this.mostra = indice;
+        },
+        nascondiMenuTendina(){
+            this.mostra = "";
+        },
+        eliminaMessaggio(lista_dei_messaggi, indice){
+            console.log(lista_dei_messaggi);
+            console.log(indice);
+            lista_dei_messaggi.splice(indice, 1);
+            this.mostra = "";   
         }
     }
 }).mount("#container_generale")                                 // Monta su ID container_generale nel DOM

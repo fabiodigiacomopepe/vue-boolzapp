@@ -12,6 +12,10 @@ body {
     background-repeat: no-repeat;
 }
 
+li {
+    list-style-type: none;
+}
+
 /* Regole container generale */
 #container_generale {
     width: 100%;
@@ -213,6 +217,7 @@ body {
     border-radius: 10px;
     max-width: 50%;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .messaggi_io {
@@ -223,6 +228,31 @@ body {
 .messaggi_utente {
     background-color: white;
     align-self: flex-start;
+}
+
+.menuTendina {
+    background-color: white;
+    width: max-content;
+    cursor: pointer;
+    padding: 10px;
+    display: none;
+    position: absolute;
+    border: 1px solid #eeeeee;
+    left: 60px;
+    top: 20px;
+    z-index: 900;
+}
+
+.show_block {
+    display: block;
+}
+
+.menuTendina li {
+    padding: 10px;
+}
+
+.menuTendina li:hover {
+    background-color: #eeeeee;
 }
 
 /* Sezione input mio messaggio */
