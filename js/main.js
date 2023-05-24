@@ -28,7 +28,7 @@ createApp ({
             itemAttivo: 0,              // Utente interlocutore attivo = 0 (default)
             newMessage: '',             // Nuovo messaggio = stringa vuota (default)
             cercaUtenteInput: "",       // Input in cerca utente = stringa vuota (default)
-            mostra: "",              // Setto mostra su false (default)
+            mostra: "",                 // Setto mostra su stringa vuota (default)
             contacts: [
                 {
                     name: 'Michele',
@@ -197,10 +197,12 @@ createApp ({
     methods: {
         settoItemAttivo(indice) {
             this.itemAttivo = indice;                   // Imposto itemAttivo a valore INDICE (posizione utente interlocutore in array)
+            this.mostra = "";                           // Pulisco valore mostra (per menù a tendina su messaggio)
         },
         inviaMessaggio(utente) {
+            now = DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'),
             this.contacts[utente].messages.push({       // Pusho nei i messaggi della conversazione attiva un OGGETTO contenente:
-                date: "",                               // Data
+                date: now,                              // Data
                 message: this.newMessage,               // Mio messaggio preso da input apposito
                 status: 'sent'                          // Stato = inviato (default)
             });
@@ -208,8 +210,9 @@ createApp ({
             setTimeout(this.risposta, 1000);            // Setto Timeout per avere messaggio di ritorno da interlocutore
         },
         risposta(){
+            now = DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'),
             this.contacts[this.itemAttivo].messages.push({      // Pusho nei i messaggi della conversazione attiva un OGGETTO contenente:
-                date: "",                                       // Data
+                date: now,                                      // Data
                 message: "ok",                                  // Messaggio interlocutore (predefinito = ok)
                 status: 'received'                              // Stato = ricevuto (default)
             });
@@ -226,16 +229,14 @@ createApp ({
             });
         },
         mostraMenuTendina(indice){
-            this.mostra = indice;
+            this.mostra = indice;                               // Setto il valore di mostra UGUALE all'indice del messaggio cliccato
         },
         nascondiMenuTendina(){
-            this.mostra = "";
+            this.mostra = "";                                   // Pulisco valore mostra
         },
         eliminaMessaggio(lista_dei_messaggi, indice){
-            console.log(lista_dei_messaggi);
-            console.log(indice);
-            lista_dei_messaggi.splice(indice, 1);
-            this.mostra = "";   
+            lista_dei_messaggi.splice(indice, 1);               // Elimino UN elemento (1), in poszione x (indice) in array di oggetti "lista_dei_messaggi" (contacts[itemAttivo].messages)
+            this.mostra = "";                                   // Pulisco valore mostra (per menù a tendina su messaggio)
         }
     }
 }).mount("#container_generale")                                 // Monta su ID container_generale nel DOM

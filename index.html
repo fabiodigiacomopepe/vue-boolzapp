@@ -54,7 +54,15 @@
                         <ul>
                             <li class="lista_utenti_li" v-for="(utente, idx) in contacts" @click="settoItemAttivo(idx)" :class="[(itemAttivo == idx) ? 'activeLiUser' : 'otherLiUser', (utente.visible) ? 'show' : 'hidden']">
                                 <img class="profile_icon" :src="utente.avatar" :alt="utente.name">
-                                <h5>{{utente.name}}</h5>
+                                <div class="nome_ora_ultimoMessaggio">
+                                    <div class="nomeOra">
+                                        <h5>{{utente.name}}</h5>
+                                        <div class="ultimoMessaggio orario">
+                                            {{utente.messages[utente.messages.length-1].date.substr(11, 5)}}
+                                        </div>
+                                    </div>
+                                    <div class="ultimoMessaggio">{{utente.messages[utente.messages.length-1].message}}</div>
+                                </div>   
                             </li>
                         </ul>
                     </div>
@@ -67,7 +75,10 @@
                         <!-- Icon e nome -->
                         <div class="info_utente">
                             <img class="profile_icon_utente" :src="contacts[itemAttivo].avatar" alt="contacts[itemAttivo].name">
-                            <h5>{{contacts[itemAttivo].name}}</h5>
+                            <div>
+                                <h5>{{contacts[itemAttivo].name}}</h5>
+                                <div class="ultimoMessaggio">Ultimo accesso oggi alle {{contacts[itemAttivo].messages[contacts[itemAttivo].messages.length-1].date.substr(11, 5)}}</div>
+                            </div>
                         </div>
                         <!-- Opzioni -->
                         <div class="icone-right_side">
@@ -80,8 +91,10 @@
                     <!-- Sezione messaggi conversazione -->
                     <div class="area_conversazione" @click.stop="nascondiMenuTendina">
                         <div class="messaggi">
+                            <!-- Messaggio mio/interlocutore -->
                             <div @click.stop="mostraMenuTendina(idx2)" v-for="(dati_messaggio, idx2) in contacts[itemAttivo].messages" :class="(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente'">
                                 {{dati_messaggio.message}}
+                                <!-- Menù a tendina -->
                                 <div class="menuTendina" :class="mostra === idx2 ? 'show_block' : ''">
                                     <ul>
                                         <li>Message info</li>
