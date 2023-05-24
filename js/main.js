@@ -235,7 +235,11 @@ createApp ({
             this.mostra = "";                                   // Pulisco valore mostra
         },
         eliminaMessaggio(lista_dei_messaggi, indice){
-            lista_dei_messaggi.splice(indice, 1);               // Elimino UN elemento (1), in poszione x (indice) in array di oggetti "lista_dei_messaggi" (contacts[itemAttivo].messages)
+            if (indice == 0) {                                  // SE indice uguale a 0 (primo messaggio)
+                lista_dei_messaggi[0].message = false;          // Setto messaggio a FALSE
+            } else {                                            // ALTRIMENTI
+                lista_dei_messaggi.splice(indice, 1);           // Elimino UN elemento (1), in poszione x (indice) in array di oggetti "lista_dei_messaggi" (contacts[itemAttivo].messages)
+            }              
             this.mostra = "";                                   // Pulisco valore mostra (per menù a tendina su messaggio)
         }
     }

@@ -57,11 +57,11 @@
                                 <div class="nome_ora_ultimoMessaggio">
                                     <div class="nomeOra">
                                         <h5>{{utente.name}}</h5>
-                                        <div class="ultimoMessaggio orario">
+                                        <div class="ultimoMessaggio orario" :class="utente.messages[utente.messages.length-1].message === false ? 'hidden' : ''">
                                             {{utente.messages[utente.messages.length-1].date.substr(11, 5)}}
                                         </div>
                                     </div>
-                                    <div class="ultimoMessaggio">{{utente.messages[utente.messages.length-1].message}}</div>
+                                    <div class="ultimoMessaggio" :class="utente.messages[utente.messages.length-1].message === false ? 'hidden' : ''">{{utente.messages[utente.messages.length-1].message}}</div>
                                 </div>   
                             </li>
                         </ul>
@@ -92,7 +92,7 @@
                     <div class="area_conversazione" @click.stop="nascondiMenuTendina">
                         <div class="messaggi">
                             <!-- Messaggio mio/interlocutore -->
-                            <div @click.stop="mostraMenuTendina(idx2)" v-for="(dati_messaggio, idx2) in contacts[itemAttivo].messages" :class="(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente'">
+                            <div @click.stop="mostraMenuTendina(idx2)" v-for="(dati_messaggio, idx2) in contacts[itemAttivo].messages" :class="[(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente', (dati_messaggio.message === false) ? 'hidden' : '']">
                                 {{dati_messaggio.message}}
                                 <!-- Menù a tendina -->
                                 <div class="menuTendina" :class="mostra === idx2 ? 'show_block' : ''">
