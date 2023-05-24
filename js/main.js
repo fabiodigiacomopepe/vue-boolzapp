@@ -25,9 +25,9 @@ const {DateTime} = luxon;
 createApp ({
     data() {
         return {
-            itemAttivo: 0,
-            newMessage: '',
-            cercaUtenteInput: "",
+            itemAttivo: 0,              // Utente interlocutore attivo = 0 (default)
+            newMessage: '',             // Nuovo messaggio = stringa vuota (default)
+            cercaUtenteInput: "",       // Input in cerca utente = stringa vuota (default)
             contacts: [
                 {
                     name: 'Michele',
@@ -195,33 +195,34 @@ createApp ({
     },
     methods: {
         settoItemAttivo(indice) {
-            this.itemAttivo = indice;
+            this.itemAttivo = indice;                   // Imposto itemAttivo a valore INDICE (posizione utente interlocutore in array)
         },
         inviaMessaggio(utente) {
-            this.contacts[utente].messages.push({
-                date: "",
-                message: this.newMessage,
-                status: 'sent'
+            this.contacts[utente].messages.push({       // Pusho nei i messaggi della conversazione attiva un OGGETTO contenente:
+                date: "",                               // Data
+                message: this.newMessage,               // Mio messaggio preso da input apposito
+                status: 'sent'                          // Stato = inviato (default)
             });
-            this.newMessage= "";
-            setTimeout(this.risposta, 1000);
+            this.newMessage= "";                        // Ripulisco input
+            setTimeout(this.risposta, 1000);            // Setto Timeout per avere messaggio di ritorno da interlocutore
         },
         risposta(){
-            this.contacts[this.itemAttivo].messages.push({
-                date: "",
-                message: "ok",
-                status: 'received'
+            this.contacts[this.itemAttivo].messages.push({      // Pusho nei i messaggi della conversazione attiva un OGGETTO contenente:
+                date: "",                                       // Data
+                message: "ok",                                  // Messaggio interlocutore (predefinito = ok)
+                status: 'received'                              // Stato = ricevuto (default)
             });
         },
         cercaUtente(){
-            this.contacts.forEach(el => {
+            this.contacts.forEach(el => {                       // Ad ogni ciclo estrapola OGGETTO in array e settalo come "el"
+                // Se nome contenuto in el include stringa UGUALE (con caratteri MAIUSCOLI) a mia stringa inserita in INPUT, ALLORA:
                 if (el.name.toUpperCase().includes(this.cercaUtenteInput.toUpperCase())) {
-                    el.visible = true;
+                    el.visible = true;                          // Setto visibilità = TRUE
                 }
-                else {
-                    el.visible = false;
+                else {                                          // ALTRIMENTI
+                    el.visible = false;                         // Setto visibilità = FALSE
                 }
             });
         }
     }
-}).mount("#container_generale")
+}).mount("#container_generale")                                 // Monta su ID container_generale nel DOM

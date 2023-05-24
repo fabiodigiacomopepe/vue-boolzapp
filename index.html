@@ -17,12 +17,16 @@
         <div id="container_generale">
             <div class="container_schermata-interattiva">
 
+                <!-- Lato Sinistro -->
                 <div class="left_side">
+                    <!-- Info mio account -->
                     <div class="info_mioprofilo">
+                        <!-- Icon e nome -->
                         <div class="nome_icon">
                             <img class="profile_icon" src="img/avatar_3.png" alt="Fabio">
                             <h5>Sofia</h5>
                         </div>
+                        <!-- Opzioni -->
                         <div class="options">
                             <i class="fa-solid fa-circle-notch"></i>
                             <i class="fa-solid fa-message"></i>
@@ -30,6 +34,7 @@
                         </div>
                     </div>
 
+                    <!-- Sezione notifiche -->
                     <div class="notifiche">
                         <i class="fa-solid fa-bell-slash"></i>
                         <div>
@@ -38,14 +43,16 @@
                         </div>
                     </div>
 
+                    <!-- Sezione cerca -->
                     <div class="cerca">
                         <i @click.stop="cercaUtente" id="lente" class="fa-solid fa-magnifying-glass"></i>
                         <input @keyup.enter="cercaUtente" v-model="cercaUtenteInput" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
 
+                    <!-- Sezione lista utenti -->
                     <div class="lista_utenti">
                         <ul>
-                            <li v-for="(utente, idx) in contacts" @click="settoItemAttivo(idx)" :class="[(itemAttivo == idx) ? 'activeLiUser' : 'otherLiUser', (utente.visible) ? 'show' : 'hidden']">
+                            <li class="lista_utenti_li" v-for="(utente, idx) in contacts" @click="settoItemAttivo(idx)" :class="[(itemAttivo == idx) ? 'activeLiUser' : 'otherLiUser', (utente.visible) ? 'show' : 'hidden']">
                                 <img class="profile_icon" :src="utente.avatar" :alt="utente.name">
                                 <h5>{{utente.name}}</h5>
                             </li>
@@ -53,13 +60,16 @@
                     </div>
                 </div>
                 
-
+                <!-- Lato Destro -->
                 <div class="right_side">
+                    <!-- Info account interlocutore -->
                     <div class="container_info">
+                        <!-- Icon e nome -->
                         <div class="info_utente">
                             <img class="profile_icon_utente" :src="contacts[itemAttivo].avatar" alt="contacts[itemAttivo].name">
                             <h5>{{contacts[itemAttivo].name}}</h5>
                         </div>
+                        <!-- Opzioni -->
                         <div class="icone-right_side">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <i class="fa-solid fa-paperclip"></i>
@@ -67,12 +77,14 @@
                         </div>
                     </div>
 
+                    <!-- Sezione messaggi conversazione -->
                     <div class="area_conversazione">
                         <div class="messaggi">
                             <div v-for="dati_messaggio in contacts[itemAttivo].messages" :class="(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente'">{{dati_messaggio.message}}</div>
                         </div>
                     </div>
 
+                    <!-- Sezione input mio messaggio -->
                     <div class="input_messaggio">
                         <i class="fa-regular fa-face-smile"></i>
                         <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="inviaMessaggio(itemAttivo)">
