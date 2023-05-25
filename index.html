@@ -93,7 +93,8 @@
                         <div class="messaggi">
                             <!-- Messaggio mio/interlocutore -->
                             <div @click.stop="mostraMenuTendina(idx2)" v-for="(dati_messaggio, idx2) in contacts[itemAttivo].messages" :class="[(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente', (dati_messaggio.message === false) ? 'hidden' : '']">
-                                {{dati_messaggio.message}}
+                                <div class="messaggioStampato">{{dati_messaggio.message}}</div>
+                                <div class="orarioInMessaggio">{{dati_messaggio.date.substr(11, 5)}}</div>
                                 <!-- Menù a tendina -->
                                 <div class="menuTendina" :class="mostra === idx2 ? 'show_block' : ''">
                                     <ul>
