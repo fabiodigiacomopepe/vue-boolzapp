@@ -201,7 +201,6 @@ createApp ({
         },
         inviaMessaggio(utente) {
             now = DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss');
-            console.log(this.newMessage);
             if (this.newMessage !== "" && this.newMessage.replace(/\s/g, '').length) {
                 this.contacts[utente].messages.push({       // Pusho nei i messaggi della conversazione attiva un OGGETTO contenente:
                     date: now,                              // Data
