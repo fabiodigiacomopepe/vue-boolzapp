@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="css/style.css">
+        <title>Boolzapp</title>
+    </head>
+
+    <body>
+        
+        <div id="container_generale">
+            <div class="container_schermata-interattiva">
+
+                <!-- Lato Sinistro -->
+                <div class="left_side">
+                    <!-- Info mio account -->
+                    <div class="info_mioprofilo">
+                        <!-- Icon e nome -->
+                        <div class="nome_icon">
+                            <img class="profile_icon" src="img/avatar_3.png" alt="Fabio">
+                            <h5>Sofia</h5>
+                        </div>
+                        <!-- Opzioni -->
+                        <div class="options">
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+
+                    <!-- Sezione notifiche -->
+                    <div class="notifiche">
+                        <i class="fa-solid fa-bell-slash"></i>
+                        <div>
+                            <div class="notifiche_alert"> Ricevi notifiche di nuovi messaggi</div>
+                            <div class="notifiche_on">Attiva notifiche desktop</div>
+                        </div>
+                    </div>
+
+                    <!-- Sezione cerca -->
+                    <div class="cerca">
+                        <i @click.stop="cercaUtente" id="lente" class="fa-solid fa-magnifying-glass"></i>
+                        <input @keyup.enter="cercaUtente" v-model="cercaUtenteInput" type="text" placeholder="Cerca o inizia una nuova chat">
+                    </div>
+
+                    <!-- Sezione lista utenti -->
+                    <div class="lista_utenti">
+                        <ul>
+                            <li class="lista_utenti_li" v-for="(utente, idx) in contacts" @click="settoItemAttivo(idx)" :class="[(itemAttivo == idx) ? 'activeLiUser' : 'otherLiUser', (utente.visible) ? 'show' : 'hidden']">
+                                <img class="profile_icon" :src="utente.avatar" :alt="utente.name">
+                                <div class="nome_ora_ultimoMessaggio">
+                                    <div class="nomeOra">
+                                        <h5>{{utente.name}}</h5>
+                                        <div class="ultimoMessaggio orario" :class="utente.messages[utente.messages.length-1].message === false ? 'hidden' : ''">
+                                            {{utente.messages[utente.messages.length-1].date.substr(11, 5)}}
+                                        </div>
+                                    </div>
+                                    <div class="ultimoMessaggio" :class="utente.messages[utente.messages.length-1].message === false ? 'hidden' : ''">{{utente.messages[utente.messages.length-1].message}}</div>
+                                </div>   
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Lato Destro -->
+                <div class="right_side">
+                    <!-- Info account interlocutore -->
+                    <div class="container_info">
+                        <!-- Icon e nome -->
+                        <div class="info_utente">
+                            <img class="profile_icon_utente" :src="contacts[itemAttivo].avatar" alt="contacts[itemAttivo].name">
+                            <div>
+                                <h5>{{contacts[itemAttivo].name}}</h5>
+                                <div class="ultimoMessaggio">Ultimo accesso oggi alle {{contacts[itemAttivo].messages[contacts[itemAttivo].messages.length-1].date.substr(11, 5)}}</div>
+                            </div>
+                        </div>
+                        <!-- Opzioni -->
+                        <div class="icone-right_side">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-paperclip"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+
+                    <!-- Sezione messaggi conversazione -->
+                    <div class="area_conversazione" @click.stop="nascondiMenuTendina">
+                        <div class="messaggi">
+                            <!-- Messaggio mio/interlocutore -->
+                            <div @click.stop="mostraMenuTendina(idx2)" v-for="(dati_messaggio, idx2) in contacts[itemAttivo].messages" :class="[(dati_messaggio.status === 'sent') ? 'messaggi_io' : 'messaggi_utente', (dati_messaggio.message === false) ? 'hidden' : '']">
+                                <div class="messaggioStampato">{{dati_messaggio.message}}</div>
+                                <div class="orarioInMessaggio">{{dati_messaggio.date.substr(11, 5)}}</div>
+                                <!-- Menù a tendina -->
+                                <div class="menuTendina" :class="mostra === idx2 ? 'show_block' : ''">
+                                    <ul>
+                                        <li>Message info</li>
+                                        <li @click.stop="eliminaMessaggio(contacts[itemAttivo].messages, idx2)">Delete Message</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sezione input mio messaggio -->
+                    <div class="input_messaggio">
+                        <i class="fa-regular fa-face-smile"></i>
+                        <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="inviaMessaggio(itemAttivo)">
+                        <i @click.stop="inviaMessaggio(itemAttivo)" class="fa-solid fa-microphone"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+
+    </body>
+</html>
